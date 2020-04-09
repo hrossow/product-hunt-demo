@@ -1,5 +1,46 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %} {% load staticfiles %}
 
-{% block content %}
-Login!
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="p-2 col-sm w-50 text-center">
+                {% if error %}
+                <div class="p-1">
+                    <font color="red" style="font-size:1.5vw">{{ error }}</font>
+                </div>
+                {% endif %}
+
+                <div>
+                    <font style="font-size:2.5vw">Welcome back!</font>
+                </div>
+
+                <div>
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <font style="font-size:1.5vw">
+                            Username:
+                            <br />
+                            <input type="text" name="username" />
+                            <br /> Password:
+                            <br />
+                            <input type="password" name="password" />
+                            <br />
+                            <br />
+
+                            <input type="submit" class="btn btn-primary" value="Login" />
+                        </font>
+                    </form>
+                </div>
+            </div>
+
+            <div class="p-2 col-sm w-50 text-center">
+                <figure class="w-50">
+                    <img src="{% static 'p_logo.png' %}" class="img-fluid" />
+                    <font style="font-size:1.5vw">Welcome to Product Hunt - Demo Website</font>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

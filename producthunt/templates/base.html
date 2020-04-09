@@ -51,17 +51,25 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                <img src="{%static 'p_logo.png' %}" height="35" weight="35" class="d-inline-block align-top" />
-                Product Hunt - Demo</a>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'p_logo.png' %}" height="35" weight="35" class="d-inline-block align-top" /> Product Hunt - Demo
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
-                        <a class="nav-item nav-link" href="#">Sign Up</a>
-                        <a class="nav-item nav-link" href="#">Log In</a>
+                        {% if user.is_authenticated %}                        
+                        <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                        <form id="logout" method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <input type="hidden" />
+                        </form>
+                        {% else %}
+                        <a class="nav-item nav-link" href="{% url 'signup' %}">Sign Up</a>
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -74,13 +82,16 @@
 
 
     <footer class="text-muted">
-        <hr>        
-        <div class="container text-center">            
+        <hr>
+        <div class="container text-center">
             <p>
-                <font size='1'>
-                    This website was created for demonstration purposes only. No copyright infringement intended.<br/>
+                <font style="font-size:1vw">
+                    This website was created for demonstration purposes only. No copyright infringement intended.
+                    <br/>
                 </font>
-                Heinrich Arlin Rossow Filho - {% now "Y" %}
+                <font style="font-size:1.5vw">
+                    Heinrich Arlin Rossow Filho - {% now "Y" %}
+                </font>
             </p>
         </div>
     </footer>
