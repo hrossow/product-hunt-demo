@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block content %} {% load staticfiles %}
+
+
+<!-- This CSS code is here for demonstration purposes only 
+it allows to put a small * to labels marked as required -->
+<style>
+    .form-group.required .control-label:after {
+        content:" *";
+        color:red;
+      }
+</style>
+
+<div class="container">
+    <div>
+        <font style="font-size:2.5vw">Create new product</font>
+    </div>
+
+    {% if error %}
+    <div class="p-1">
+        <font color="red" style="font-size:1.5vw">{{ error }}</font>
+    </div>
+    {% endif %}
+
+    <div class="form-group required">
+        <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <font style="font-size:1.5vw">
+                <label class="control-label">Title:</label>
+                <br />
+                <input type="text" name="title" />
+                <br />
+                
+                <label class="control-label">Body:</label>
+                <br />
+                <input type="textbox" name="body" />
+                <br />
+                
+                <label class="control-label">URL:</label>
+                <br />
+                <input type="text" name="url" />
+                <br />
+
+                <label class="control-label">Icon:</label>
+                <input type="file" name="icon" />
+                <br />
+
+                <label class="control-label">Image:</label>
+                <input type="file" name="image" />
+                <br />
+                
+                <br />
+                <input type="submit" class="btn btn-primary" value="Add product" />
+                <br />                
+            </font>
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}
