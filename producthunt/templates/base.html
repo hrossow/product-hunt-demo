@@ -13,7 +13,8 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous" />
     <link href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}" rel="stylesheet" />
 
     <!-- Favicons -->
@@ -49,6 +50,14 @@
 
 <body>
     <header>
+        <div class="pb-1 text-center">
+            <font style="font-size:1.5vw;">
+               <a href="http://hrossow.com">Take me back to hrossow.com (Portfolio)</a>
+               <br/>
+               The material bellow is for demostration purposes and everything written on it does not reflect the reality.
+            </font>
+        </div>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -61,7 +70,8 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'create' %}"><span class="oi oi-plus"></span> Create</a>
+                        <a class="nav-item nav-link" href="{% url 'create' %}">
+                            <span class="oi oi-plus"></span> Create</a>
                         <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                         <form id="logout" method="POST" action="{% url 'logout' %}">
                             {% csrf_token %}
